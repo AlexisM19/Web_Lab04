@@ -1,0 +1,50 @@
+extends layouts/main
+
+block content
+  script(src="./javascripts/items.js")
+  .content-title
+    h1 Gestion des articles
+  .content-data
+    table.darkTable
+      thead
+        tr
+          th(style="width:6rem") Image
+          th(style="width:8rem") Code
+          th(style="width:13rem") Titre
+          th Description
+          th(style="width:6rem") Prix
+          th(style="width:5rem")
+            i.fas.fa-plus-square#addButton()
+      tfoot
+        tr
+          td(colspan=6)
+      tbody#tbody
+        for item in items
+          include includes/item
+
+  div(class="modal fade" id="modal")
+    div(class="modal-dialog modal-dialog-centered" role="document")
+      div(class="modal-content")
+        div(class="modal-header")
+          h4(class="modal-title") Article
+          button(type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white") &times;
+
+        div(class="modal-body")
+          form
+            .form-group
+              label(for="itemPicture") Image
+              img#itemPicture.rounded.mx-auto.d-block.w-50(style="background-color:white; padding:0.25rem" src="./images/imageplaceholder.png", alt="")
+            .form-group
+              label(for="itemCodeInput") Code
+              input#itemCodeInput.form-control(type="text" placeholder="Entrer le CUP d'article")
+            .form-group
+              label(for="itemTitleInput") Titre
+              input#itemTitleInput.form-control(type="text" placeholder="Titre court")
+            .form-group
+              label(for="itemDescriptionInput") Description
+              textarea#itemDescriptionInput.form-control(rows="6")
+            .form-group
+              label(for="itemPriceInput") Prix
+              input#itemPriceInput.form-control(type="text" placeholder="Prix de vente")
+        div(class="modal-footer")
+          button#submitButton(type="button" class="btn btn-primary") Soumettre

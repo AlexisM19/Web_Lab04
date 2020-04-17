@@ -1,0 +1,10 @@
+tr(id=(item.id))
+  td 
+    img.product-image(src=`./images/products/${item.code}.jpeg` alt="")
+  td#itemCode= item.code
+  td#itemTitle.text-left= item.title
+  td#itemDescription.text-left= item.description
+  td#itemPrice= item.price
+  td
+    i.fas.fa-edit#editButton(itemid=item.id)
+    i.fas.fa-minus-circle.ml-2#deleteButton(itemid=item.id)
